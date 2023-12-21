@@ -1,0 +1,201 @@
+
+<style>
+     body {
+       width: 100%;
+       font-size: 16px;
+       margin: 0;
+       padding: 0;
+       outline: none;
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
+    } 
+
+
+    .id1 {
+       border: double 6px rgb(66, 64, 64);
+        outline: solid 2px rgb(68, 64, 64);
+        margin: 50px; 
+        margin-top:40px;
+        min-height: 60vh;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+   }
+  
+    #p1 input[type="text"] {
+        border: none;
+        background: none;
+        outline: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: absolute;
+        /* width: 70%; */
+    }
+
+    table {
+       
+        width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;
+        margin-top: 20px; 
+        /* box-sizing: border-box; */
+    }
+
+    th, td {
+       
+        border: 1px solid black;
+        padding: 8px;
+    }
+
+    td input[type="text"] {
+        border: none;
+        background: none;
+        outline: none;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .form-input {
+    width: 0%;
+    padding: 0.5px;
+    margin-left: 20px;
+    border: 0.5px solid #fff8f8;
+    /* border: 1px solid #c4bcbc; */
+    outline:none;
+    border-radius: 5px;
+    margin-bottom: 6px;
+  }
+
+    hr {
+        border-color: black;
+        margin-bottom: 20%;
+    }
+     
+    #p2 input[type="text"] {
+       border: none;
+        background: none;
+        outline: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: absolute;
+        /* width: 70%; */
+    }
+
+    #p2 p input[type="text"] {
+       border: none;
+        background: none;
+        outline: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: absolute;
+        /* width: 70%; */
+    }
+
+    #nk{
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        #b1 a{
+        position: relative;
+            left: 48%;
+            text-decoration: none;
+            border: 2px double rgb(100, 97, 97);
+            border-radius: 3px;
+            padding-left: 9px;
+            padding-right: 9px;
+         }
+         #b1 #b2{
+        position: relative;
+            left: 48%;
+            text-decoration: none;
+            border: 2px double rgb(100, 97, 97);
+            border-radius: 3px;
+            padding-left: 9px;
+            padding-right: 9px;
+         } 
+
+</style>
+
+<body>
+    <div class="id1">
+        <div id="p1">
+            <p><b>Any issue / concerned expressed by client / Family:</b></p>
+            <!-- <b>1</b><input type="text" placeholder=" "><br><br> -->
+            <label for="use_of_other_drugs" style="display: inline-block; vertical-align: top;"><b>1</b></label>
+            <textarea class="form-input" style="width: 90%; vertical-align: top;"></textarea>
+            <br>
+            <label for="use_of_other_drugs" style="display: inline-block; vertical-align: top;"><b>2</b></label>
+            <textarea class="form-input" style="width: 90%; vertical-align: top;"></textarea>
+            <br>
+            <label for="use_of_other_drugs" style="display: inline-block; vertical-align: top;"><b>3</b></label>
+            <textarea class="form-input" style="width: 90%; vertical-align: top;"></textarea>
+            <br>
+
+            <label for="use_of_other_drugs" style="display: inline-block; vertical-align: top;"><b>4</b></label>
+            <textarea class="form-input" style="width: 90%; vertical-align: top;"></textarea>
+ 
+         
+            <p><b>Impression of Intake counsellor: </b><input type="text" placeholder=" "></p>
+            <p><b>Action taken: </b><input type="radio" placeholder=" " maxlength="20" name="action">Admitted<input type="radio" placeholder=" " maxlength="20" name="action">Given later Date
+               <input type="radio" placeholder=" " maxlength="20" name="action">Referral
+               <input type="radio" placeholder=" " maxlength="20" name="action">Denied Admission
+             </p>
+            <p style="position:relative;left: 30%;"><b>Address: </b><input type="text" placeholder=""></p>
+        </div>
+        <hr>
+
+        <div id="p2">
+            <table>
+                <th colspan="4" style="text-align: left;">Contact Phone Numbers:</th>
+                <tr>
+                    <th> </th>
+                    <th>Number</th>
+                    <th>Name</th>
+                    <th>Relation</th>
+                </tr>
+                <tr>
+                    <td><b>Mob No.1</b></td>
+                    <td><input type="text" placeholder="" maxlength="10"></td>
+                    <td><input type="text" placeholder="" maxlength="20"></td>
+                    <td><input type="text" placeholder=""></td>
+                </tr>
+                <tr>
+                    <td><b>Mob No.2</b></td>
+                    <td><input type="text" placeholder="" maxlength="10"></td>
+                    <td><input type="text" placeholder=""></td>
+                    <td><input type="text" placeholder=""></td>
+                </tr>
+                <tr>
+                    <td><b>Mob No.3</b></td>
+                    <td><input type="text" placeholder="" maxlength="10"></td>
+                    <td><input type="text" placeholder=""></td>
+                    <td><input type="text" placeholder=""></td>
+                </tr>
+                <tr>
+                    <td><b>Landline No.1</b></td>
+                    <td><input type="text" placeholder="" maxlength="10"></td>
+                    <td><input type="text" placeholder=""></td>
+                    <td><input type="text" placeholder=""></td>
+                </tr>
+            </table>
+            <br>
+            <!-- <p><b>Remarks : </b><input type="text" placeholder=" "><br><input type="text" placeholder=" "><br><input type="text" placeholder=""><br><input type="text" placeholder=""><br><input type="text" placeholder=""></p> <br><br><br> -->
+            <label for="use_of_other_drugs"><b>Remarks :</b></label><br>
+            <textarea name="k1" id="nk" cols="20" rows="10" style="width: 100%; "></textarea>
+            <br>
+            <p style="position:relative; left: 69% ; "><input type="text" placeholder=""><br><b>Signature of Counsellor</b></p>
+            
+            <div id="b1">
+                <a routerLink="../first" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252);display: inline-block; vertical-align: top;"><b>P</b></a> 
+                 <b id="b2" style="text-decoration: none; color:black; background-color: rgb(243, 237, 237);display: inline-block; vertical-align: top;">2</b>
+                <a routerLink="../third" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252); display: inline-block; vertical-align: top;"><b>N</b></a> 
+           </div>
+        </div>
+    </div>
+</body>
