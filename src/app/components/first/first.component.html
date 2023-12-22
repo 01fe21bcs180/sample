@@ -138,6 +138,9 @@
               <div *ngIf="formData.get('name')?.hasError('required') && formData.get('name')?.touched" class="error-msg">
               Name is required
               </div>
+              <div *ngIf="formData.get('name')?.hasError('invalidCharacters') && formData.get('name')?.dirty" class="error-msg">
+                Please enter only alphabetic characters for the name field
+              </div>
             </div>
   
             <div class="form-row">

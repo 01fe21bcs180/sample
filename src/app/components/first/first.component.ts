@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,Validators,AbstractControl} from '@angular/forms';
 import { FirstserService } from './firstser.service';
 import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -12,7 +12,8 @@ formData: FormGroup;
 
 constructor(private fb: FormBuilder, private firstserService: FirstserService,private toastr: ToastrService ) {
   this.formData = this.fb.group({
-    name: ['', Validators.required],
+    //  name: ['', Validators.required],
+    name: ['', [Validators.required, this.characterValidator]],
     maritalStatus:" ",
     occupation: [''],
     age: [null],
@@ -30,6 +31,19 @@ constructor(private fb: FormBuilder, private firstserService: FirstserService,pr
     use_of_other_drugs: [''],
     motivatingFactor: ['']
   });
+  
+}
+
+
+characterValidator(control: AbstractControl): { [key: string]: any } | null {
+  const value = control.value;
+  const valid = /^[a-zA-Z]+$/.test(value); // Check if the value contains only letters
+
+  if (!valid) {
+    return { 'invalidCharacters': true, 'message': 'Please enter only alphabetic characters' };
+  }
+
+  return null;
 }
 
 onSubmit() {
