@@ -128,18 +128,21 @@
       
         <h1 style="margin-top: 6px; font-size:30px;">Intake Form</h1>
      
-  
+  <form action="" [formGroup]="formData" (ngSubmit)="onSubmit()">
       <div class="form">
         <div class="form-row">
           <div class="form-fields">
             <div class="form-row">
               <label for="name">Name</label>
-              <input type="text" name="name" id="name" class="form-input" style="width: 50%;">
+              <input type="text" name="name" id="name" class="form-input"  style="width: 50%" formControlName="name">
+              <div *ngIf="formData.get('name')?.hasError('required') && formData.get('name')?.touched" class="error-msg">
+              Name is required
+              </div>
             </div>
   
             <div class="form-row">
-              <label for="marital_status">Marital Status</label>
-              <select name="marital_status" id="marital_status" class="form-input">
+              <label for="maritalStatus">Marital Status</label>
+              <select name="maritalStatus" id="maritalStatus" class="form-input" formControlName="maritalStatus">
                 <option value="single">Single</option>
                 <option value="married">Married</option>
                 <option value="divorced">Divorced</option>
@@ -149,29 +152,29 @@
   
             <div class="form-row">
               <label for="occupation">Occupation</label>
-              <input type="text" name="occupation" id="occupation" class="form-input">
+              <input type="text" name="occupation" id="occupation" class="form-input" formControlName="occupation">
             </div>
           </div>
   
           <div class="form-fields">
             <div class="form-row">
               <label for="age">Age</label>
-              <input type="number" name="age" id="age" class="form-input">
+              <input type="number" name="age" id="age" class="form-input" formControlName="age">
             </div>
   
             <div class="form-row">
               <label for="dob">Date of Birth</label>
-              <input type="date" name="dob" id="dob" class="form-input">
+              <input type="date" name="dob" id="dob" class="form-input" formControlName="dob">
             </div>
   
             <div class="form-row">
-              <label for="date_of_intake">Date of Intake</label>
-              <input type="date" name="date_of_intake" id="date_of_intake" class="form-input">
+              <label for="dateOfIntake">Date of Intake</label>
+              <input type="date" name="dateOfIntake" id="dateOfIntake" class="form-input" formControlName="dateOfIntake">
             </div>
   
             <div class="form-row">
               <label for="bpl">BPL: </label>
-              <select name="bpl" id="bpl" class="form-input">
+              <select name="bpl" id="bpl" class="form-input" formControlName="bpl">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
@@ -182,19 +185,19 @@
         
   
         <div class="form-group">
-          <label for="year_of_drinking_or_drug_abuse">Year of drinking/Drug abuse: </label>
+          <label for="yearOfDrinking">Year of drinking/Drug abuse: </label>
        
-          <input type="number" min="1900" max="2500" step="1" name="year_of_drinking_or_drug_abuse" id="year_of_drinking_or_drug_abuse" class="form-input" style="margin-left:130px;">
+          <input type="number" min="1900" max="2500" step="1" name="yearOfDrinking" id="yearOfDrinking" class="form-input" style="margin-left:130px;" formControlName="yearOfDrinking">
         </div>
   
         <div class="form-group">
-          <label for="year_of_excessive_drinking_or_drug_abuse">Year of Excessive Drinking/Drug Abuse: </label>
-          <input type="number" min="1900" max="2500" step="1" name="year_of_drinking_or_drug_abuse" id="year_of_drinking_or_drug_abuse" class="form-input" style="margin-left:56px;">
+          <label for="yearOfExcessiveDrinking">Year of Excessive Drinking/Drug Abuse: </label>
+          <input type="number" min="1900" max="2500" step="1" name="yearOfExcessiveDrinking" id="yearOfExcessiveDrinking" class="form-input" style="margin-left:56px;" formControlName="yearOfExcessiveDrinking">
         </div>
       
         <div class="form-group">
-          <label for="present_pattern_of_drinking_or_drug_abuse">Present pattern of drinking/Drug Abuse: </label>
-          <input type="number" name="present_pattern_of_drinking_or_drug_abuse" id="present_pattern_of_drinking_or_drug_abuse" class="form-input" style="margin-left:51px;">
+          <label for="presentPatternOfDrinking">Present pattern of drinking/Drug Abuse: </label>
+          <input type="number" name="presentPatternOfDrinking" id="presentPatternOfDrinking" class="form-input" style="margin-left:51px;" formControlName="presentPatternOfDrinking">
         </div>
       
   
@@ -202,16 +205,16 @@
           <div class="side-heading">Presence of:</div>
   
                 <li>
-                  <label for="use_of_other_drugs">Use of Other Drugs:</label>
-                  <select name="use_of_other_drugs" id="use_of_other_drugs" class="form-input" style="margin-left:58px;">
+                  <label for="useOfOtherDrugs">Use of Other Drugs:</label>
+                  <select name="useOfOtherDrugs" id="useOfOtherDrugs" class="form-input" style="margin-left:58px;" formControlName="useOfOtherDrugs">
                     <option value="nil">Nil</option>
                     <option value="mild">Past use only</option>
                     <option value="moderate">Presently using</option>
                   </select>
                 </li>
             <li>
-              <label for="psychiatric_problem">Psychiatric Problem</label>
-              <select name="psychiatric_problem" id="psychiatric_problem" class="form-input" style="margin-left:58px;">
+              <label for="psychiatricProblem">Psychiatric Problem</label>
+              <select name="psychiatricProblem" id="psychiatricProblem" class="form-input" style="margin-left:58px;" formControlName="psychiatricProblem">
                 <option value="nil">Nil</option>
                 <option value="mild">Mild</option>
                 <option value="moderate">Moderate</option>
@@ -220,7 +223,7 @@
             </li>
             <li>
               <label for="denial">Denial</label>
-              <select name="denial" id="denial" class="form-input" style="margin-left:145px;">
+              <select name="denial" id="denial" class="form-input" style="margin-left:145px;" formControlName="denial">
                 <option value="mild">Mild</option>
                 <option value="moderate">Moderate</option>
                 <option value="severe">Severe</option>
@@ -232,27 +235,30 @@
         <div class="form-group">
           <!-- Added space after Denial -->
           <div class="side-heading">Physical Problems(Record Specifically):</div>
-          <textarea name="physical_problems" id="physical_problems" class="form-input1" row="1" style="width: 100%;"></textarea>
+          <textarea name="physicalProblems" id="physicalProblems" class="form-input1" row="1" style="width: 100%;" formControlName="physicalProblems"></textarea>
        
           <div class="side-heading">Prior Treatment for Addiction/Other Problems:</div>
-          <textarea name="prior_treatment" id="prior_treatment" class="form-input1" row="1" style="width: 100%;"></textarea>
+          <textarea name="priorTreatment" id="priorTreatment" class="form-input1" row="1" style="width: 100%;" formControlName="priorTreatment"></textarea>
             <br>
             <br>
             <label for="use_of_other_drugs"><b>Willingness for Treatment:</b></label>
-            <select name="use_of_other_drugs" id="use_of_other_drugs" class="form-input" style="margin-left:58px;">
+            <select name="use_of_other_drugs" id="use_of_other_drugs" class="form-input" style="margin-left:58px;" formControlName="use_of_other_drugs">
               <option value="Unwilling">Unwilling</option>
               <option value="half-hearted">half-hearted</option>
               <option value="willing">willing</option>
             </select>
   
           <div class="side-heading">Motivating factor for present treatment effort:</div>
-          <textarea name="motivating_factor" id="motivating_factor" class="form-input1" row="1" style="width: 100%;"></textarea>
+          <textarea name="motivatingFactor" id="motivatingFactor" class="form-input1" row="1" style="width: 100%;" formControlName="motivatingFactor"></textarea>
         </div>
       </div>
+      <button type="submit" [disabled]="!formData.valid">Save</button>
       <div id="b1">
         <b id="b2" style="text-decoration: none; color:black; background-color: rgb(243, 237, 237);display: inline-block; vertical-align: top;">1</b>
         <a routerLink="../second" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252); display: inline-block; vertical-align: top;"><b>N</b></a> 
     </div>
+   
+  </form>
     </div>
   </body>
   

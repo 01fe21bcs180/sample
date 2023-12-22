@@ -25,11 +25,11 @@
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FirstComponent } from './components/first/first.component';
-
+import { ToastrModule } from 'ngx-toastr';
 import { SecondComponent } from './components/second/second.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ThirdComponent } from './components/third/third.component';
@@ -37,6 +37,7 @@ import { FourthComponent } from './components/fourth/fourth.component';
 import { FifthComponent } from './components/fifth/fifth.component';
 import { SixthComponent } from './components/sixth/sixth.component';
 import { SeventhComponent } from './components/seventh/seventh.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -50,10 +51,12 @@ import { SeventhComponent } from './components/seventh/seventh.component';
     SeventhComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-   
+      FormsModule,
+      ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
