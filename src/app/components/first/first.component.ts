@@ -40,7 +40,7 @@ characterValidator(control: AbstractControl): { [key: string]: any } | null {
   const valid = /^[a-zA-Z]+$/.test(value); // Check if the value contains only letters
 
   if (!valid) {
-    return { 'invalidCharacters': true, 'message': 'Please enter only alphabetic characters' };
+    return { 'invalidCharacters': true, 'message': 'Enter only alphabets' };
   }
 
   return null;
