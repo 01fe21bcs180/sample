@@ -124,29 +124,32 @@
 
 <body>
     <div class="id1">
+        <form action="" [formGroup]="formData" (ngSubmit)="onSubmit()">
         <div id="p1">
             <p><b>Any issue / concerned expressed by client / Family:</b></p>
             <!-- <b>1</b><input type="text" placeholder=" "><br><br> -->
             <label for="use_of_other_drugs" style="display: inline-block; vertical-align: top;"><b>1</b></label>
-            <textarea class="form-input" style="width: 90%; vertical-align: top;"></textarea>
+            <textarea class="form-input" style="width: 90%; vertical-align: top;" name="issue1" formControlName="issue1"></textarea>
             <br>
             <label for="use_of_other_drugs" style="display: inline-block; vertical-align: top;"><b>2</b></label>
-            <textarea class="form-input" style="width: 90%; vertical-align: top;"></textarea>
+            <textarea class="form-input" style="width: 90%; vertical-align: top;" name="issue2" formControlName="issue2"></textarea>
             <br>
             <label for="use_of_other_drugs" style="display: inline-block; vertical-align: top;"><b>3</b></label>
-            <textarea class="form-input" style="width: 90%; vertical-align: top;"></textarea>
+            <textarea class="form-input" style="width: 90%; vertical-align: top;" name="issue3" formControlName="issue3"></textarea>
             <br>
 
             <label for="use_of_other_drugs" style="display: inline-block; vertical-align: top;"><b>4</b></label>
-            <textarea class="form-input" style="width: 90%; vertical-align: top;"></textarea>
+            <textarea class="form-input" style="width: 90%; vertical-align: top;" name="issue4" formControlName="issue4"></textarea>
  
          
-            <p><b>Impression of Intake counsellor: </b><input type="text" placeholder=" "></p>
-            <p><b>Action taken: </b><input type="radio" placeholder=" " maxlength="20" name="action">Admitted<input type="radio" placeholder=" " maxlength="20" name="action">Given later Date
-               <input type="radio" placeholder=" " maxlength="20" name="action">Referral
-               <input type="radio" placeholder=" " maxlength="20" name="action">Denied Admission
-             </p>
-            <p style="position:relative;left: 30%;"><b>Address: </b><input type="text" placeholder=""></p>
+            <p><b>Impression of Intake counsellor: </b><input type="text" placeholder=" " name="impression" formControlName="impression"></p>
+            <p><b>Action taken: </b>
+                <input type="radio" placeholder=" " maxlength="20" name="actionTaken" formControlName="actionTaken" value="Admitted"> Admitted
+                <input type="radio" placeholder=" " maxlength="20" name="actionTaken" formControlName="actionTaken" value="Given later Date"> Given later Date
+                <input type="radio" placeholder=" " maxlength="20" name="actionTaken" formControlName="actionTaken" value="Referral"> Referral
+                <input type="radio" placeholder=" " maxlength="20" name="actionTaken" formControlName="actionTaken" value="Denied Admission"> Denied Admission
+              </p>
+            <p style="position:relative;left: 30%;"><b>Address: </b><input type="text" placeholder="" name="address" formControlName="address"></p>
         </div>
         <hr>
 
@@ -159,43 +162,45 @@
                     <th>Name</th>
                     <th>Relation</th>
                 </tr>
-                <tr>
+                <tr formGroupName="mobNo1">
                     <td><b>Mob No.1</b></td>
-                    <td><input type="text" placeholder="" maxlength="10"></td>
-                    <td><input type="text" placeholder="" maxlength="20"></td>
-                    <td><input type="text" placeholder=""></td>
+                    <td><input type="text" placeholder="" maxlength="10" name="number" formControlName="number"></td>
+                    <td><input type="text" placeholder="" maxlength="20" name="name" formControlName="name"></td>
+                    <td><input type="text" placeholder="" name="relation" formControlName="relation"></td>
                 </tr>
-                <tr>
+                <tr formGroupName="mobNo2">
                     <td><b>Mob No.2</b></td>
-                    <td><input type="text" placeholder="" maxlength="10"></td>
-                    <td><input type="text" placeholder=""></td>
-                    <td><input type="text" placeholder=""></td>
+                    <td><input type="text" placeholder="" maxlength="10" name="number" formControlName="number"></td>
+                    <td><input type="text" placeholder="" name="name" formControlName="name"></td>
+                    <td><input type="text" placeholder="" name="relation" formControlName="relation"></td>
                 </tr>
-                <tr>
+                <tr formGroupName="mobNo3">
                     <td><b>Mob No.3</b></td>
-                    <td><input type="text" placeholder="" maxlength="10"></td>
-                    <td><input type="text" placeholder=""></td>
-                    <td><input type="text" placeholder=""></td>
+                    <td><input type="text" placeholder="" maxlength="10" name="number" formControlName="number"></td>
+                    <td><input type="text" placeholder="" name="name" formControlName="name"></td>
+                    <td><input type="text" placeholder="" name="relation" formControlName="relation"></td>
                 </tr>
-                <tr>
+                <tr formGroupName="landlineNo1">
                     <td><b>Landline No.1</b></td>
-                    <td><input type="text" placeholder="" maxlength="10"></td>
-                    <td><input type="text" placeholder=""></td>
-                    <td><input type="text" placeholder=""></td>
+                    <td><input type="text" placeholder="" maxlength="10" name="number" formControlName="number"></td>
+                    <td><input type="text" placeholder="" name="name" formControlName="name"></td>
+                    <td><input type="text" placeholder="" name="relation" formControlName="relation"></td>
                 </tr>
             </table>
             <br>
             <!-- <p><b>Remarks : </b><input type="text" placeholder=" "><br><input type="text" placeholder=" "><br><input type="text" placeholder=""><br><input type="text" placeholder=""><br><input type="text" placeholder=""></p> <br><br><br> -->
-            <label for="use_of_other_drugs"><b>Remarks :</b></label><br>
-            <textarea name="k1" id="nk" cols="20" rows="10" style="width: 100%; "></textarea>
+            <label for="remarks"><b>Remarks :</b></label><br>
+            <textarea name="remarks" id="nk" cols="20" rows="10" style="width: 100%; " formControlName="remarks"></textarea>
             <br>
             <p style="position:relative; left: 69% ; "><input type="text" placeholder=""><br><b>Signature of Counsellor</b></p>
-            
+            <button type="submit" [disabled]="!formData.valid">Save</button>
+            <br>
             <div id="b1">
                 <a routerLink="../first" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252);display: inline-block; vertical-align: top;"><b>P</b></a> 
                  <b id="b2" style="text-decoration: none; color:black; background-color: rgb(243, 237, 237);display: inline-block; vertical-align: top;">2</b>
                 <a routerLink="../third" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252); display: inline-block; vertical-align: top;"><b>N</b></a> 
            </div>
         </div>
+    </form>
     </div>
 </body>

@@ -10,9 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 export class FirstComponent {
 formData: FormGroup;
 
-constructor(private fb: FormBuilder, private firstserService: FirstserService,private toastr: ToastrService ) {
+constructor(private fb: FormBuilder, private firstserService: FirstserService, private toastr: ToastrService) {
   this.formData = this.fb.group({
-    //  name: ['', Validators.required],
     name: ['', [Validators.required, this.characterValidator]],
     maritalStatus:" ",
     occupation: [''],
@@ -68,3 +67,6 @@ onSubmit() {
   }
 }
 }
+
+
+
