@@ -1,4 +1,3 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -16,8 +15,7 @@ mongoose.connect('mongodb+srv://01fe21bcs180:Sonikanti%402003@database.lvyvjl3.m
 });
 
 const formDataSchema = new mongoose.Schema({
-  // Your schema fields here...
-  name: String,
+  addictname: String,
   maritalStatus: String,
   occupation: String,
   age: Number,
@@ -34,6 +32,7 @@ const formDataSchema = new mongoose.Schema({
   priorTreatment: String,
   use_of_other_drugs: String,
   motivatingFactor: String,
+
   issue1: String,
   issue2: String,
   issue3: String,
@@ -62,22 +61,50 @@ const formDataSchema = new mongoose.Schema({
     relation: String
   },
   remarks: String,
+
   ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು: String,
   ಪಾಲ್ಗೊಳ್ಳಲುದಿನಾಂಕ: Date,
   ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು1: String,
   ದಾಖಲುಪಡಿಸಿದವರಹೆಸರು: String,
-  ಮೊಬೈಲ: Number
+  ಮೊಬೈಲ: Number,
+  
+  ಹೆಸರು: String,
+  ನಿವಾಸ: String,
+  age: String,
+  place: String,
+  ಸಾಕ್ಷಿದಾರ1: String,
+  ನಿವಾಸ1: String,
+  ಸಾಕ್ಷಿದಾರ2: String,
+  ನಿವಾಸ2: String,
+  name1: String,
+  age1: String,
+  place1: String,
+  name2: String,
+  age2: String,
+  place2: String,
+  SpecialNoteವಿಶೇಷಸೂಚನೆ:String,
+  name:String,
+  MobileNo:Number,
+  ದಿನ:Number,
+  ತಿಂಗಳು:String,
+  ವರ್ಷ:Number,
+  Date:Number,
+  Month:String,
+  Year: Number,
+  attenderName1:String,
+  attenderName2:String,
+  date:Number,
+  MonthYear:String,
+  ಚಿಕಿತ್ಸಾರ್ಥಿಯಸಹಿ:String,
+  PhysicalComplications:String
 });
 
-// Define the model only once
 const FormDataModel = mongoose.model('formData', formDataSchema);
 
-// Add a lock to ensure sequential processing
 let isSaving = false;
 
 app.post('/api/saveFormData', async (req, res) => {
   try {
-    // If already saving, wait for the previous operation to complete
     while (isSaving) {
       await new Promise(resolve => setTimeout(resolve, 100));
     }
@@ -87,19 +114,16 @@ app.post('/api/saveFormData', async (req, res) => {
     const formData = req.body;
     const componentName = formData.component;
 
-    // Check the component name and use FormDataModel accordingly
     let formDataModel;
 
-    // Find the record using ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು1
-    formDataModel = await FormDataModel.findOne({ ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು: formData.ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು });
+   formDataModel = await FormDataModel.findOne();
+  // ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು: 
+  //formData.ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು
 
     if (!formDataModel) {
-      // If no existing record, create a new one
       formDataModel = new FormDataModel(formData);
     } else {
-      // Update all fields in the existing record
       for (const key in formData) {
-        // Only update if the field is not null or undefined
         if (formData[key] !== null && formData[key] !== undefined) {
           formDataModel[key] = formData[key];
         }
@@ -116,6 +140,10 @@ app.post('/api/saveFormData', async (req, res) => {
   }
 });
 
+
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+

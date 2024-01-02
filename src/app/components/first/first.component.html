@@ -129,16 +129,24 @@
         <h1 style="margin-top: 6px; font-size:30px;">Intake Form</h1>
      
   <form action="" [formGroup]="formData" (ngSubmit)="onSubmit()">
+
+    <!-- <div>
+      <label for="addictName">Addict Name:</label>
+      <input type="text" id="addictName" formControlName="addictName" />
+      <button (click)="fetchDataByAddictName()">Fetch Data</button>
+    </div> -->
+
       <div class="form">
         <div class="form-row">
           <div class="form-fields">
             <div class="form-row">
-              <label for="name">Name</label>
-              <input type="text" name="name" id="name" class="form-input"  style="width: 50%" formControlName="name">
-              <div *ngIf="formData.get('name')?.hasError('required') && formData.get('name')?.touched" class="error-msg">
+              <label for="addictname">Name</label>
+              <input type="text" name="addictname" id="name" class="form-input"  style="width: 50%" formControlName="addictname">
+
+              <div *ngIf="formData.get('addictname')?.hasError('required') && formData.get('addictname')?.touched" class="error-msg">
               Name is required
               </div>
-              <div *ngIf="formData.get('name')?.hasError('invalidCharacters') && formData.get('name')?.dirty" class="error-msg">
+              <div *ngIf="formData.get('addictname')?.hasError('invalidCharacters') && formData.get('addictname')?.dirty" class="error-msg">
                 Please enter only alphabetic characters for the name field
               </div>
             </div>

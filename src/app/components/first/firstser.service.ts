@@ -32,5 +32,12 @@ export class FirstserService {
   saveFormData(formData: any): Observable<any> {
     return this.http.post(this.apiUrl, { ...formData, component: 'first' });
   }
+
+  // private fetchApiUrl = 'http://localhost:3000/api/getFormData';
+  // getFormDataByAddictName(addictName: string): Observable<any> {
+  //   const url = `${this.fetchApiUrl}/${addictName}`;
+  //   return this.http.get(url);
+  // }
+
 }
 

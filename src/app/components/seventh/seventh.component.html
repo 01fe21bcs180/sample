@@ -79,12 +79,13 @@
     </style>
 
 <body>
+  <form action="" [formGroup]="formData" (ngSubmit)="onSubmit()">
     <div id="id1">
         <u>
    <h2>Physical complications at the time of Admission</h2>
    </u>
 
-   <textarea name="k1" id="nk" cols="30" rows="30" style="width: 100%;"></textarea>
+   <textarea name="k1" name="PhysicalComplications" formControlName="PhysicalComplications" id="nk" cols="30" rows="30" style="width: 100%;"></textarea>
  <br>
  <br>
  <br>
@@ -96,11 +97,14 @@
  <b style="position: relative; left:56%">Signature of the Family:</b>
 </p> 
 
+<br>
+<button type="submit" [disabled]="!formData.valid">Save</button>
+
 <div id="b1">
       <a routerLink="../sixth" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252); display: inline-block; vertical-align: top;"><b>P</b></a> 
       <b id="b2" style="text-decoration: none; color:black; background-color: rgb(243, 237, 237);display: inline-block; vertical-align: top;">7</b>
   
     </div>
 </div>
-    
+</form>   
 </body>

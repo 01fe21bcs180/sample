@@ -17,7 +17,7 @@ export class ThirdComponent {
       ಪಾಲ್ಗೊಳ್ಳಲುದಿನಾಂಕ: [''],
       ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು1: [''],
       ದಾಖಲುಪಡಿಸಿದವರಹೆಸರು: [''],
-      ಮೊಬೈಲ್: [null, Validators.pattern("^[0-9]*$")] 
+      ಮೊಬೈಲ: [null, Validators.pattern("^[0-9]*$")] 
     });
   }
 

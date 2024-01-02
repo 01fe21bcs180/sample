@@ -66,7 +66,7 @@
   </style>
 
 <body >
-
+  <form action="" [formGroup]="formData" (ngSubmit)="onSubmit()">
   <div id="main_body">
     <div>
       <u>
@@ -80,7 +80,7 @@
         <br>
        <br>
        <br>
-       <input type="text">
+       <input type="text" name="ಚಿಕಿತ್ಸಾರ್ಥಿಯಸಹಿ" formControlName="ಚಿಕಿತ್ಸಾರ್ಥಿಯಸಹಿ">
 
         <p><b>ಚಿಕಿತ್ಸಾರ್ಥಿಯ ಸಹಿ</b></p>
     </div>
@@ -105,11 +105,12 @@
     </div>
    <br>
    <br>
-  
+   <button type="submit" [disabled]="!formData.valid">Save</button>
     <div id="b1">
       <a routerLink="../fifth" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252);display: inline-block; vertical-align: top;"><b>P</b></a> 
        <b id="b2" style="text-decoration: none; color:black; background-color: rgb(243, 237, 237);display: inline-block; vertical-align: top;">6</b>
       <a routerLink="../seventh" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252); display: inline-block; vertical-align: top;"><b>N</b></a> 
  </div>
 </div>
+</form>
 </body>
