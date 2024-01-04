@@ -9,7 +9,12 @@ const PORT = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb+srv://01fe21bcs180:Sonikanti%402003@database.lvyvjl3.mongodb.net/Wt', {
+// mongoose.connect('mongodb+srv://01fe21bcs180:Sonikanti%402003@database.lvyvjl3.mongodb.net/Wt', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
+
+mongoose.connect('mongodb+srv://01fe21bcs180:QrZRz5q7C8SLkTY3@cluster0.fmjmpgk.mongodb.net/SE', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -103,7 +108,7 @@ const FormDataModel = mongoose.model('formData', formDataSchema);
 
 let isSaving = false;
 
-app.post('/api/saveFormData', async (req, res) => {
+app.post('/api/saveFormData/:addictName', async (req, res) => {
   try {
     while (isSaving) {
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -113,15 +118,18 @@ app.post('/api/saveFormData', async (req, res) => {
 
     const formData = req.body;
     const componentName = formData.component;
+    const addictName = req.params.addictName;
 
     let formDataModel;
 
-   formDataModel = await FormDataModel.findOne();
+    formDataModel = await FormDataModel.findOne({ addictname: addictName });
   // ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು: 
   //formData.ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು
 
     if (!formDataModel) {
+      console.log("formdata null");
       formDataModel = new FormDataModel(formData);
+      await formDataModel.save();
     } else {
       for (const key in formData) {
         if (formData[key] !== null && formData[key] !== undefined) {
@@ -143,7 +151,29 @@ app.post('/api/saveFormData', async (req, res) => {
 
 
 
+app.get('/api/getFormData/:addictName', async (req, res) => {
+  try {
+    const addictName = req.params.addictName;
+
+    // Perform a query to retrieve data based on the addictName
+    const formData = await FormDataModel.findOne({ addictname: addictName });
+
+    if (!formData) {
+      res.status(404).json({ success: false, error: 'Data not found' });
+      return;
+    }
+
+    res.json({ success: true, data: formData });
+  } catch (error) {
+    console.error('Error fetching form data:', error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
+
 

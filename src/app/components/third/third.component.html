@@ -116,9 +116,12 @@
         <div id="b1">
             <a routerLink="../second" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252);display: inline-block; vertical-align: top;"><b>P</b></a> 
              <b id="b2" style="text-decoration: none; color:black; background-color: rgb(243, 237, 237);display: inline-block; vertical-align: top;">3</b>
-            <a routerLink="../fourth" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252); display: inline-block; vertical-align: top;"><b>N</b></a> 
+            <a  [routerLink]="['../fourth', { addictName: formData.get('addictname')?.value }]" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252); display: inline-block; vertical-align: top;"><b>N</b></a> 
        </div>
-     
+       <!-- <div *ngIf="retrievedData">
+              <h2>Retrieved Data</h2>
+              <pre>{{ retrievedData | json }}</pre>
+            </div> -->
     </div>
   </form>
     </body>

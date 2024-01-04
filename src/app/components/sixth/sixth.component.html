@@ -109,7 +109,7 @@
     <div id="b1">
       <a routerLink="../fifth" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252);display: inline-block; vertical-align: top;"><b>P</b></a> 
        <b id="b2" style="text-decoration: none; color:black; background-color: rgb(243, 237, 237);display: inline-block; vertical-align: top;">6</b>
-      <a routerLink="../seventh" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252); display: inline-block; vertical-align: top;"><b>N</b></a> 
+      <a [routerLink]="['../seventh', { addictName: formData.get('addictname')?.value }]" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252); display: inline-block; vertical-align: top;"><b>N</b></a> 
  </div>
 </div>
 </form>

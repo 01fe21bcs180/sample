@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThirdserService } from './thirdser.service';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-third',
@@ -9,42 +12,82 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./third.component.css']
 })
 export class ThirdComponent {
-  formData: FormGroup;
+  addictName: string;
 
-  constructor(private fb: FormBuilder, private thirdserService: ThirdserService, private toastr: ToastrService) {
-    this.formData = this.fb.group({
-      ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು: [null, Validators.required],
-      ಪಾಲ್ಗೊಳ್ಳಲುದಿನಾಂಕ: [''],
-      ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು1: [''],
-      ದಾಖಲುಪಡಿಸಿದವರಹೆಸರು: [''],
-      ಮೊಬೈಲ: [null, Validators.pattern("^[0-9]*$")] 
-    });
+  formData: FormGroup = this.fb.group({
+    
+    ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು: [null, Validators.required],
+    ಪಾಲ್ಗೊಳ್ಳಲುದಿನಾಂಕ: [''],
+    ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು1: [''],
+    ದಾಖಲುಪಡಿಸಿದವರಹೆಸರು: [''],
+    ಮೊಬೈಲ: [null, Validators.pattern('^[0-9]*$')]
+  });
+
+
+  retrievedData: any;
+  dataFetched: boolean = false;
+
+  constructor(
+    private fb: FormBuilder,
+    private thirdserService: ThirdserService,
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private sharedService: SharedService
+  ) {
+    
+    this.addictName = this.sharedService.getAddictName();
+
+    // Fetch data when the component is initialized
+    this.fetchDataByAddictName();
+
   }
 
   onSubmit() {
     if (this.formData.valid) {
-      const dataToSend = { ...this.formData.value, component: 'third' };
-      
-      console.log('Data to send:', dataToSend); // Log the data being sent
-  
-      this.thirdserService.saveFormData(dataToSend).subscribe(
+
+      this.addictName = this.sharedService.getAddictName();
+      // const dataToSend = { ...this.formData.value, component: 'third' };
+
+      this.thirdserService.saveFormData(this.formData.value, this.addictName).subscribe(
         (response) => {
           console.log('Form data saved successfully:', response);
-          // Optionally, you can handle success here
           this.toastr.success('Form data saved successfully', 'Success');
           this.formData.reset();
         },
         (error) => {
           console.error('Error saving form data:', error);
-          // Optionally, you can handle errors here
           this.toastr.error('Error saving form data', 'Error');
         }
       );
     } else {
-      // Form is not valid, handle accordingly
       console.log('Form is not valid');
     }
   }
-  
+
+  fetchDataByAddictName() {
+    if (this.addictName) {
+      this.thirdserService.getFormDataByAddictName(this.addictName).subscribe(
+        (data) => {
+          this.retrievedData = data.data; // Assuming the data is returned in the 'data' property
+          console.log('Data retrieved successfully:', this.retrievedData);
+          this.dataFetched = true;
+          // Update form controls with retrieved data
+          this.formData.patchValue(this.retrievedData);
+        },
+        (error) => {
+          console.error('Error fetching data:', error);
+          this.toastr.error('Error fetching data', 'Error');
+        }
+      );
+    }
+  }
+
+  navigateToThirdPage() {
+    // Only navigate to the third page if data is fetched
+    if (this.dataFetched) {
+      this.router.navigate(['../fourth'], { relativeTo: this.route });
+    }
+  }
 }
 

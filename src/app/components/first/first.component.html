@@ -149,8 +149,14 @@
               <div *ngIf="formData.get('addictname')?.hasError('invalidCharacters') && formData.get('addictname')?.dirty" class="error-msg">
                 Please enter only alphabetic characters for the name field
               </div>
+
+              <button type="button" (click)="fetchDataByAddictName()">Fetch Data</button>
             </div>
-  
+            <!-- <div *ngIf="retrievedData">
+              <h2>Retrieved Data</h2>
+              <pre>{{ retrievedData | json }}</pre>
+            </div> -->
+            
             <div class="form-row">
               <label for="maritalStatus">Marital Status</label>
               <select name="maritalStatus" id="maritalStatus" class="form-input" formControlName="maritalStatus">
@@ -263,13 +269,17 @@
           <textarea name="motivatingFactor" id="motivatingFactor" class="form-input1" row="1" style="width: 100%;" formControlName="motivatingFactor"></textarea>
         </div>
       </div>
+      <!-- Include the addict name in the routerLink when navigating to the second component
+<a [routerLink]="['../second', { addictName: formData.get('addictname')?.value }]">Go to Second Component</a> -->
+
       <button type="submit" [disabled]="!formData.valid">Save</button>
       <div id="b1">
         <b id="b2" style="text-decoration: none; color:black; background-color: rgb(243, 237, 237);display: inline-block; vertical-align: top;">1</b>
-        <a routerLink="../second" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252); display: inline-block; vertical-align: top;"><b>N</b></a> 
+        <a  [routerLink]="['../second', { addictName: formData.get('addictname')?.value }]" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252); display: inline-block; vertical-align: top;"><b>N</b></a> 
     </div>
    
   </form>
     </div>
+    
   </body>
   

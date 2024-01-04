@@ -11,7 +11,14 @@ export class SixthService{
 
   constructor(private http: HttpClient) { }
 
-  saveFormData(formData: any): Observable<any> {
-    return this.http.post(this.apiUrl, { ...formData, component: 'sixth' });
+  saveFormData(formData: any, addictName: String): Observable<any> {
+
+    return this.http.post( `${this.apiUrl}/${addictName}`, { ...formData, component: 'sixth' });
+  }
+
+  private fetchApiUrl = 'http://localhost:3000/api/getFormData';
+  getFormDataByAddictName(addictName: string): Observable<any> {
+    const url = `${this.fetchApiUrl}/${addictName}`;
+    return this.http.get(url);
   }
 }
