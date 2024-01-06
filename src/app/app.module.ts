@@ -38,6 +38,8 @@ import { FifthComponent } from './components/fifth/fifth.component';
 import { SixthComponent } from './components/sixth/sixth.component';
 import { SeventhComponent } from './components/seventh/seventh.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PrintComponent } from './components/print/print.component';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { HttpClientModule } from '@angular/common/http';
     FifthComponent,
     SixthComponent,
     SeventhComponent,
+    PrintComponent,
   ],
   imports: [
     HttpClientModule,

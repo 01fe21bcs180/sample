@@ -77,6 +77,45 @@
            color: black;  
            font-size: 17px;     
         }
+        .image-container {
+  position: relative;
+  display: inline-block;
+  left:69%;
+}
+
+
+.remove-button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  cursor: pointer;
+  color: rgb(219, 34, 34);
+  font-weight: bold;
+  font-size: 14px;
+  background: rgb(209, 83, 83);
+  border-radius: 50%;
+  /* padding: 2px; */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s; 
+}
+
+.remove-button:hover {
+  opacity: 1; /* Visible on hover */
+}
+
+.form-input {
+  width: 20%;
+  /* Add other styles for the file input if needed */
+}
+.image-wrapper {
+              width: 30px;
+              position: relative;
+          }
+
+          .image-wrapper button {
+              position: absolute;
+              z-index: 1; /* Ensure button is above image */
+          }
         </style>
     <body>
       <form action="" [formGroup]="formData" (ngSubmit)="onSubmit()">
@@ -105,9 +144,19 @@
         <p><b>ಸಂಘಟಕರ ಗಮನಕ್ಕೆ ಬಾರದೇ, ತಿಳಿಸದೇ, ಸಂಸ್ಥೆಯಿಂದ ಹೊರಗೆ ಹೋಗಿ ಯಾವುದೇ ಅನಾಹುತ ಸಂಭವಿಸಿ ಸಮಸ್ಯೆಯಾದಲ್ಲಿ ದಾಖಲು ಪಡಿಸಿದ ನಾವೇ ಜವಾಬ್ದಾರರು.</b></p>
         <br>
         <br>
-        <p style="padding-left: 60%;"><b>ದಾಖಲುಪಡಿಸಿದವರ</b></p>
+      
+            <p style="padding-left: 60%;"><b>ದಾಖಲುಪಡಿಸಿದವರ</b></p>
 
-        <p style="padding-left:50%;" ><b>ಹೆಸರು </b><input type="text" name="ದಾಖಲುಪಡಿಸಿದವರಹೆಸರು" style="width: 150px;" formControlName="ದಾಖಲುಪಡಿಸಿದವರಹೆಸರು"> &emsp;&emsp;<b> ಸಹಿ </b> </p>
+            <p style="padding-left:50%;padding-top:0%;" ><b>ಹೆಸರು </b><input type="text" name="ದಾಖಲುಪಡಿಸಿದವರಹೆಸರು" style="width: 150px;" formControlName="ದಾಖಲುಪಡಿಸಿದವರಹೆಸರು"> &emsp;&emsp;<b> ಸಹಿ </b> <input #fileinput type="file" [hidden]="hideChoose" (change)="selectFile($event)"> <img [src]="url" [hidden] = "hideButton" alt="Selected image"> <button [hidden]="hideButton"(click)="removeImage()">×</button></p>
+            <div class="image-wrapper">
+              
+              
+              
+            </div>
+            <!-- <div class="image-container">
+              
+            </div> -->
+       
         <br>
         <p style="position: relative; left: 50%;"><b>ಮೊಬೈಲ್ ನಂ.</b><input type="text" style="width: 220px;" name="ಮೊಬೈಲ" formControlName="ಮೊಬೈಲ"></p>
         <br>

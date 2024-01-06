@@ -1,5 +1,7 @@
 
-import { Component, OnInit } from '@angular/core';
+
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThirdserService } from './thirdser.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +15,7 @@ import { SharedService } from '../shared.service';
 })
 export class ThirdComponent {
   addictName: string;
-
+  displayedImages: SafeUrl[] = [];
   formData: FormGroup = this.fb.group({
     
     ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು: [null, Validators.required],
@@ -33,7 +35,9 @@ export class ThirdComponent {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef
   ) {
     
     this.addictName = this.sharedService.getAddictName();
@@ -89,5 +93,42 @@ export class ThirdComponent {
       this.router.navigate(['../fourth'], { relativeTo: this.route });
     }
   }
+
+  url:any;
+  hideChoose=false;
+  hideButton=true;
+
+
+
+  selectFile(event: any) {
+    if (!event.target.files[0] || event.target.files[0].length == 0) {
+      return;
+    }
+  
+    const mimeType = event.target.files[0].type;
+    if (!mimeType.match(/image\/*/)) {
+      return;
+    }
+  
+    const reader = new FileReader();
+    reader.onload = (_event) => {
+      this.url = reader.result;
+      this.hideChoose = true;
+      this.hideButton = false;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+    removeImage(){
+      this.url = null;
+      this.hideChoose=false;
+      this.hideButton=true;
+
+      
+      
+  }
+
+    
+  
 }
 

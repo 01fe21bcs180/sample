@@ -120,6 +120,36 @@
             padding-right: 9px;
          } 
 
+         .image-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px ;
+  left:69%;
+
+}
+.remove-button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  cursor: pointer;
+  color: rgb(219, 34, 34);
+  font-weight: bold;
+  font-size: 14px;
+  background: rgb(209, 83, 83);
+  border-radius: 50%;
+  /* padding: 2px; */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s; 
+}
+
+.remove-button:hover {
+  opacity: 1; /* Visible on hover */
+}
+
+.form-input {
+  width: 20%;
+  /* Add other styles for the file input if needed */
+}
 </style>
 
 <body>
@@ -192,11 +222,23 @@
             <label for="remarks"><b>Remarks :</b></label><br>
             <textarea name="remarks" id="nk" cols="20" rows="10" style="width: 100%; " formControlName="remarks"></textarea>
             <br>
-            <p style="position:relative; left: 69% ; "><input type="text" placeholder=""><br><b>Signature of Counsellor</b></p>
+            <div class="form-row">
+                
+                <div *ngFor="let displayedImage of displayedImages; let i = index" class="image-container">
+                  <span class="remove-button" (click)="removeImage(i)">X</span>
+                  <img [src]="displayedImage" id="mk" style="max-width: 100%; height: auto;">
+                </div>
+              
+                <div class="image-container">
+                  <input type="file" (change)="onFileChange($event)" id="file" class="form-input" style="width: 50%;" [hidden]="displayedImages.length > 0">
+                </div>
+                <p style="position:relative; left: 69% ; "><b>Signature of Counsellor</b></p>
+              </div>
+
             <button type="submit" [disabled]="!formData.valid">Save</button>
             <br>
             <div id="b1">
-                <a routerLink="../first" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252);display: inline-block; vertical-align: top;"><b>P</b></a> 
+                <a [routerLink]="['../first', { addictName: formData.get('addictname')?.value }]"  style="text-decoration: none; color:black; background-color: rgb(255, 252, 252);display: inline-block; vertical-align: top;"><b>P</b></a> 
                  <b id="b2" style="text-decoration: none; color:black; background-color: rgb(243, 237, 237);display: inline-block; vertical-align: top;">2</b>
                 <a [routerLink]="['../third', { addictName: formData.get('addictname')?.value }]" style="text-decoration: none; color:black; background-color: rgb(255, 252, 252); display: inline-block; vertical-align: top;"><b>N</b></a> 
            </div>

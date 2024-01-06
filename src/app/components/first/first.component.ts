@@ -223,12 +223,22 @@ export class FirstComponent {
 
   constructor(private fb: FormBuilder, private firstserService: FirstserService, private toastr: ToastrService, private http: HttpClient,private router: Router
     , private route: ActivatedRoute,private sharedService: SharedService ) {
+
+      if(this.sharedService.getToggle()){
+
+        
+        this.fetchDataByAddictName(true, this.sharedService.getAddictName());
+
+      }
+      else{
+        this.sharedService.setToggle()
+      }
       
   }
 
   characterValidator(control: AbstractControl): { [key: string]: any } | null {
     const value = control.value;
-    const valid = /^[a-zA-Z]+$/.test(value);
+    const valid = /^[a-zA-Z\s]+$/.test(value);
 
     if (!valid) {
       return { 'invalidCharacters': true, 'message': 'Enter only alphabets' };
@@ -284,22 +294,29 @@ export class FirstComponent {
 //   }
 // }
 
-fetchDataByAddictName() {
-  const addictName = this.formData.get('addictname')?.value;
+fetchDataByAddictName(value: boolean = false, addName: String= "") {
+  
+  let addictName = this.formData.get('addictname')?.value;
+  if(value){
+    addictName = addName;
+  }
   if (addictName) {
     this.firstserService.getFormDataByAddictName(addictName).subscribe(
       (data) => {
         this.retrievedData = data.data; // Assuming the data is returned in the 'data' property
         console.log('Data retrieved successfully:', this.retrievedData);
 
+        this.dataFetched = true;
         // Update form controls with retrieved data
         this.formData.patchValue(this.retrievedData);
 
         // Set addict name in the SharedService
         this.sharedService.setAddictName(this.formData.get('addictname')?.value);
 
+        
+
         // Update the dataFetched flag
-        this.dataFetched = true;
+        
       },
       (error) => {
         console.error('Error fetching data:', error);

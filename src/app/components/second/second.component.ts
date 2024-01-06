@@ -112,7 +112,8 @@
 
 
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SecondserService } from './secondser.service';
 import { ToastrService } from 'ngx-toastr';
@@ -125,7 +126,7 @@ import { SharedService } from '../shared.service';
 })
 export class SecondComponent {
  addictName: string;
-
+ displayedImages: SafeUrl[] = [];
   formData: FormGroup = this.fb.group({
     
     issue1: [''],
@@ -161,9 +162,11 @@ export class SecondComponent {
   dataFetched: boolean = false; 
  
   constructor(private fb: FormBuilder, private secondserService: SecondserService, private toastr: ToastrService, private route: ActivatedRoute,private router: Router
-    ,private sharedService: SharedService) 
+    ,private sharedService: SharedService,private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef) 
   {
 
+    
     this.addictName = this.sharedService.getAddictName();
 
 console.log("second service",this.addictName);
@@ -251,6 +254,40 @@ console.log("second service",this.addictName);
     if (this.dataFetched) {
       this.router.navigate(['../third'], { relativeTo: this.route });
     }
+  }
+
+  onFileChange(event: any) {
+    const files = (event.target as HTMLInputElement).files;
+
+    if (files && files.length > 0) {
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const imageUrl = this.sanitizer.bypassSecurityTrustUrl(e.target.result);
+        this.displayedImages.push(imageUrl);
+        this.cdr.detectChanges();
+      };
+      reader.readAsDataURL(file);
+    
+    } else {
+     console.error('No file selected.');
+    }
+  }
+
+  removeImage(index: number) {
+    this.displayedImages.splice(index, 1);
+    this.resetFileInput();
+  }
+
+  resetFileInput() {
+    // Reset file input value
+    const fileInput = document.getElementById('file') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
+    }
+
+    // Trigger change detection
+    this.cdr.detectChanges();
   }
 }
 
