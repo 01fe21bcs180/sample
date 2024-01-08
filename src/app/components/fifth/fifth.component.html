@@ -149,7 +149,15 @@ width: 20%;
          <p><b>Specially Note:</b>&ensp;<br>
          <b style="font-size: 13px;">ವಿಶೇಷ ಸೂಚನೆ:</b>&ensp;<br>
           <textarea name="SpecialNoteವಿಶೇಷಸೂಚನೆ" formControlName="SpecialNoteವಿಶೇಷಸೂಚನೆ" style="width: 100%; " id="nk" cols="30" rows="10"></textarea>
-         <p><b>Name </b><input type="text" name="name" formControlName="name" maxlength="25"><b>Sign</b><input type="text"  maxlength="23">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+         
+          <input type="file" [hidden]="hideChoose5" (change)="selectFile5($event)" >
+          <div class="image-wrapper">
+            <img [src]="url5" [hidden] = "hideButton5" alt="Selected image">
+            <button [hidden]="hideButton5"(click)="removeImage5()">×</button>
+          </div>
+          
+          <p><b>Name </b><input type="text" name="name" formControlName="name" maxlength="25">
+          <b>Sign</b><input type="text"  maxlength="23">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
           <b>Mobile No: </b><input type="text" name="MobileNo" formControlName="MobileNo" maxlength="10">
          </p>
       
@@ -175,51 +183,43 @@ width: 20%;
         <b>day of</b><input type="text"  name="MonthYear" formControlName="MonthYear" maxlength="19" style="width: 90px;" >
 
 
-          <div *ngFor="let displayedImage4 of displayedImages4; let i = index" class="image-container2">
-            <span class="remove-button" (click)="removeImage(i,'section4')">X</span>
-            <img [src]="displayedImage4" id="mk" style="max-width: 100%; height: auto;">
-          </div>
-        
-          <div class="image-container2">
-            <input type="file" (change)="onFileChange3($event)" id="file" class="form-input" style="width: 50%;" [hidden]="displayedImages4.length > 0">
-          </div>
+        <input type="file" [hidden]="hideChoose4" (change)="selectFile4($event)" >
+        <div class="image-wrapper">
+          <img [src]="url4" [hidden] = "hideButton4" alt="Selected image">
+          <button [hidden]="hideButton4"(click)="removeImage4()">×</button>
+        </div>
+
           <br><b style="position: relative; left:45% ;">Signature</b></h4>
           
           <h4><b>In the Presence of</b><br><br><b>Names : </b><br>
           <br>1)<input type="text"  name="attenderName1" formControlName="attenderName1" maxlength="26">
-          <div *ngFor="let displayedImage3 of displayedImages3; let i = index" class="image-container3">
-            <span class="remove-button" (click)="removeImage(i,'section3')">X</span>
-            <img [src]="displayedImage3" id="mk" style="max-width: 100%; height: auto;">
-          </div>
-        
-          <div class="image-container3">
-            <input type="file" (change)="onFileChange2($event)" id="file" class="form-input" style="width: 50%;" [hidden]="displayedImages3.length > 0">
+
+          <input type="file" [hidden]="hideChoose3" (change)="selectFile3($event)" >
+          <div class="image-wrapper">
+            <img [src]="url3" [hidden] = "hideButton3" alt="Selected image">
+            <button [hidden]="hideButton3"(click)="removeImage3()">×</button>
           </div>
           <br><b style="position: relative; left:45%">Signature</b>
           </h4>
 
          <h4>2)<input type="text"  name="attenderName2" formControlName="attenderName2" maxlength="26" >
-          <div *ngFor="let displayedImage2 of displayedImages2; let i = index" class="image-container1">
-            <span class="remove-button" (click)="removeImage(i,'section2')">X</span>
-            <img [src]="displayedImage2" id="mk" style="max-width: 100%; height: auto;">
-          </div>
-        
-          <div class="image-container1">
-            <input type="file" (change)="onFileChange1($event)" id="file" class="form-input" style="width: 50%;" [hidden]="displayedImages2.length > 0">
-          </div>
+
+          <input type="file" [hidden]="hideChoose2" (change)="selectFile2($event)" >
+    <div class="image-wrapper">
+      <img [src]="url2" [hidden] = "hideButton2" alt="Selected image">
+      <button [hidden]="hideButton2"(click)="removeImage2()">×</button>
+    </div>
           <br><b style="position: relative; left:45%">Signature</b>
          </h4>
 
       <br>
      
-      <div *ngFor="let displayedImage1 of displayedImages1; let i = index" class="image-container">
-        <span class="remove-button" (click)="removeImage(i,'section1')">X</span>
-        <img [src]="displayedImage1" id="mk" style="max-width: 100%; height: auto;">
-      </div>
-    
-      <div class="image-container">
-        <input type="file" (change)="onFileChange($event)" id="file" class="form-input" style="width: 50%;" [hidden]="displayedImages1.length > 0">
-      </div>
+      <input type="file" [hidden]="hideChoose1" (change)="selectFile1($event)" >
+    <div class="image-wrapper">
+      <img [src]="url1" [hidden] = "hideButton1" alt="Selected image">
+      <button [hidden]="hideButton1"(click)="removeImage1()">×</button>
+    </div>
+
       <br><b style="position: relative; left:42%">Signature of Staff</b>
      
       </div>

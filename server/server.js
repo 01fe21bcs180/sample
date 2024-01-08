@@ -87,6 +87,7 @@ const formDataSchema = new mongoose.Schema({
   name2: String,
   age2: String,
   place2: String,
+
   SpecialNoteವಿಶೇಷಸೂಚನೆ:String,
   name:String,
   MobileNo:Number,
@@ -100,8 +101,17 @@ const formDataSchema = new mongoose.Schema({
   attenderName2:String,
   date:Number,
   MonthYear:String,
+  sig1:String,
+  sig2:String,
+  sig3:String,
+  sig4:String,
+  sig5:String,
+
   ಚಿಕಿತ್ಸಾರ್ಥಿಯಸಹಿ:String,
+  signature1: String,
+  signature2: String,
   PhysicalComplications:String
+
 });
 
 const FormDataModel = mongoose.model('formData', formDataSchema);

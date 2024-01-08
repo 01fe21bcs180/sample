@@ -15,6 +15,8 @@ export class SixthComponent{
 
   formData: FormGroup=this.fb.group({
     ಚಿಕಿತ್ಸಾರ್ಥಿಯಸಹಿ:[''],
+    signature1: [''],
+    signature2: ['']
   });
   retrievedData: any;
   dataFetched: boolean = false;
@@ -32,6 +34,70 @@ export class SixthComponent{
     this.fetchDataByAddictName();
    
   }
+
+  url1: any;
+  hideChoose1=false;
+  hideButton1=true;
+  url2: any;
+  hideChoose2=false;
+  hideButton2=true;
+
+
+
+  selectFile1(event: any) {
+    if (!event.target.files[0] || event.target.files[0].length == 0) {
+      return;
+    }
+  
+    const mimeType = event.target.files[0].type;
+    if (!mimeType.match(/image\/*/)) {
+      return;
+    }
+  
+    const reader = new FileReader();
+    reader.onload = (_event) => {
+      const formControls = this.formData.controls;
+      formControls['signature1'].setValue(reader.result)
+      this.url1 = reader.result;
+      this.hideChoose1 = true;
+      this.hideButton1 = false;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  selectFile2(event: any) {
+    if (!event.target.files[0] || event.target.files[0].length == 0) {
+      return;
+    }
+  
+    const mimeType = event.target.files[0].type;
+    if (!mimeType.match(/image\/*/)) {
+      return;
+    }
+  
+    const reader = new FileReader();
+    reader.onload = (_event) => {
+      const formControls = this.formData.controls;
+      formControls['signature2'].setValue(reader.result)
+      this.url2 = reader.result;
+      this.hideChoose2 = true;
+      this.hideButton2 = false;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+    removeImage1(){
+      this.url1 = null;
+      this.hideChoose1=false;
+      this.hideButton1=true;
+
+    }
+    removeImage2(){
+      this.url2 = null;
+      this.hideChoose2=false;
+      this.hideButton2=true;
+
+    }
 
   onSubmit(): void {
     if (this.formData.valid) {
@@ -60,7 +126,24 @@ export class SixthComponent{
           console.log('Data retrieved successfully:', this.retrievedData);
           this.dataFetched = true;
           // Update form controls with retrieved data
-          this.formData.patchValue(this.retrievedData);
+          if(this.formData.get('signature1')?.value != null)
+          {
+            this.formData.patchValue(this.retrievedData);
+            this.url1 = this.formData.get('signature1')?.value;
+            this.hideChoose1 = true;
+            this.hideButton1 = false;
+
+          }
+          if(this.formData.get('signature2')?.value != null)
+          {
+            this.formData.patchValue(this.retrievedData);
+            this.url2 = this.formData.get('signature2')?.value;
+            this.hideChoose2 = true;
+            this.hideButton2 = false;
+
+          }
+          
+
         },
         (error) => {
           console.error('Error fetching data:', error);
