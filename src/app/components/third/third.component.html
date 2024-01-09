@@ -116,6 +116,17 @@ width: 20%;
     position: absolute;
     z-index: 1; /* Ensure button is above image */
 }
+
+.image-wrapper3{
+    position: relative;
+    display: inline-block;
+      left: 56%;
+   }
+   .image-wrapper2{
+    position: relative;
+    display: inline-block;
+      left: 59%;
+   }
 </style>
 <body>
 <form action="" [formGroup]="formData" (ngSubmit)="onSubmit()">
@@ -138,10 +149,11 @@ width: 20%;
 <p style="padding-left: 60%;"><b>ಚಿಕಿತ್ಸಾರ್ಥಿಯ</b></p>
 <p style="padding-left: 60%;" ><b>ಹೆಸರು</b> <input type="text"  name="ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು1" style="width: 150px;" formControlName="ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು1">&emsp;&emsp;</p>
 <input type="file" [hidden]="hideChoose1" (change)="selectFile1($event)" style="padding-left: 62%;" >
-<div class="image-wrapper">
+<div class="image-wrapper2">
 <img [src]="url1" [hidden] = "hideButton1" alt="Selected image">
 <button [hidden]="hideButton1"(click)="removeImage1()">×</button>
-</div><b style="padding-left: 63%;"> ಸಹಿ </b> 
+</div>
+<br><b style="padding-left: 63%;"> ಸಹಿ </b> 
 
 
 <br>
@@ -157,11 +169,12 @@ width: 20%;
   
   <p style="padding-left:60%;padding-top:0%;" ><b>ಹೆಸರು </b><input type="text" name="ದಾಖಲುಪಡಿಸಿದವರಹೆಸರು" style="width: 150px;" formControlName="ದಾಖಲುಪಡಿಸಿದವರಹೆಸರು"></p>
   <input type="file" [hidden]="hideChoose2" (change)="selectFile2($event)" style="padding-left: 60%;">
-  <div class="image-wrapper">
-  <img [src]="url2" [hidden] = "hideButton2" alt="Selected image">
+  <div class="image-wrapper3">
+  <img [src]="url2" [hidden] = "hideButton2" alt="Selected image" style="padding-left: 60%;">
   <button [hidden]="hideButton2"(click)="removeImage2()">×</button>
 </div>
-   &emsp;&emsp;<b style="padding-left: 63%;"> ಸಹಿ </b>
+<br>
+   &emsp;&emsp;<b style="padding-left: 64%;"> ಸಹಿ </b>
 
 
 

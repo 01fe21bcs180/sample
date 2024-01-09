@@ -399,21 +399,16 @@ export class FifthComponent{
           this.dataFetched = true;
           // Update form controls with retrieved data
 
-          
-
-          if( this.formData.get('sig5')?.value != "")
-          {
+        
             this.formData.patchValue(this.retrievedData);
             this.url5 = this.formData.get('sig5')?.value;
             this.hideChoose5 = true;
             this.hideButton5 = false;
 
-          }
-
           if( this.formData.get('sig4')?.value != "")
           {
             this.formData.patchValue(this.retrievedData);
-            this.url4 = this.formData.get('sig1')?.value;
+            this.url4 = this.formData.get('sig4')?.value;
           this.hideChoose4 = true;
           this.hideButton4 = false;
 
