@@ -78,53 +78,7 @@
         font-size: 16px;
        }
 
-       .image-container {
-position: relative;
-display: inline-block;
-margin-top: 10px ;
-left:43%;
-
-}
-.image-container1{
-position: relative;
-display: inline-block;
-margin-top: 10px ;
-left:30%;
-
-}
-
-.image-container2{
-position: relative;
-display: inline-block;
-margin-top: 10px ;
-left:23%;
-
-}
-.image-container3{
-position: relative;
-display: inline-block;
-margin-top: 10px ;
-left:31%;
-
-}
-.remove-button {
-position: absolute;
-top: 2px;
-right: 2px;
-cursor: pointer;
-color: rgb(219, 34, 34);
-font-weight: bold;
-font-size: 14px;
-background: rgb(209, 83, 83);
-border-radius: 50%;
-/* padding: 2px; */
-opacity: 0; /* Initially hidden */
-transition: opacity 0.3s; 
-}
-
-.remove-button:hover {
-opacity: 1; /* Visible on hover */
-}
+ 
 
 .form-input {
 width: 20%;
@@ -150,7 +104,7 @@ width: 20%;
          <b style="font-size: 13px;">ವಿಶೇಷ ಸೂಚನೆ:</b>&ensp;<br>
           <textarea name="SpecialNoteವಿಶೇಷಸೂಚನೆ" formControlName="SpecialNoteವಿಶೇಷಸೂಚನೆ" style="width: 100%; " id="nk" cols="30" rows="10"></textarea>
          
-          <input type="file" [hidden]="hideChoose5" (change)="selectFile5($event)" >
+          <input type="file" [hidden]="hideChoose5" (change)="selectFile5($event)" style="padding-left: 16%;">
           <div class="image-wrapper">
             <img [src]="url5" [hidden] = "hideButton5" alt="Selected image">
             <button [hidden]="hideButton5"(click)="removeImage5()">×</button>
@@ -183,7 +137,7 @@ width: 20%;
         <b>day of</b><input type="text"  name="MonthYear" formControlName="MonthYear" maxlength="19" style="width: 90px;" >
 
 
-        <input type="file" [hidden]="hideChoose4" (change)="selectFile4($event)" >
+        <input type="file" [hidden]="hideChoose4" (change)="selectFile4($event)" style="padding-left: 22%;">
         <div class="image-wrapper">
           <img [src]="url4" [hidden] = "hideButton4" alt="Selected image">
           <button [hidden]="hideButton4"(click)="removeImage4()">×</button>
@@ -194,7 +148,7 @@ width: 20%;
           <h4><b>In the Presence of</b><br><br><b>Names : </b><br>
           <br>1)<input type="text"  name="attenderName1" formControlName="attenderName1" maxlength="26">
 
-          <input type="file" [hidden]="hideChoose3" (change)="selectFile3($event)" >
+          <input type="file" [hidden]="hideChoose3" (change)="selectFile3($event)" style="padding-left: 30%;" >
           <div class="image-wrapper">
             <img [src]="url3" [hidden] = "hideButton3" alt="Selected image">
             <button [hidden]="hideButton3"(click)="removeImage3()">×</button>
@@ -204,7 +158,7 @@ width: 20%;
 
          <h4>2)<input type="text"  name="attenderName2" formControlName="attenderName2" maxlength="26" >
 
-          <input type="file" [hidden]="hideChoose2" (change)="selectFile2($event)" >
+          <input type="file" [hidden]="hideChoose2" (change)="selectFile2($event)" style="padding-left: 30%;" >
     <div class="image-wrapper">
       <img [src]="url2" [hidden] = "hideButton2" alt="Selected image">
       <button [hidden]="hideButton2"(click)="removeImage2()">×</button>
@@ -214,8 +168,8 @@ width: 20%;
 
       <br>
      
-      <input type="file" [hidden]="hideChoose1" (change)="selectFile1($event)" >
-    <div class="image-wrapper">
+      <input type="file" [hidden]="hideChoose1" (change)="selectFile1($event)" style="padding-left: 43%;">
+    <div class="image-wrapper" >
       <img [src]="url1" [hidden] = "hideButton1" alt="Selected image">
       <button [hidden]="hideButton1"(click)="removeImage1()">×</button>
     </div>

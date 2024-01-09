@@ -110,7 +110,16 @@ const formDataSchema = new mongoose.Schema({
   ಚಿಕಿತ್ಸಾರ್ಥಿಯಸಹಿ:String,
   signature1: String,
   signature2: String,
-  PhysicalComplications:String
+  PhysicalComplications:String,
+
+  signature71: String,
+  signature72: String,
+
+  signature21: String,
+
+  signature31:String,
+  signature32:String,
+  photo:String
 
 });
 

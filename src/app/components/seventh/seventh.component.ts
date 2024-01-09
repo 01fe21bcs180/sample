@@ -15,7 +15,72 @@ export class SeventhComponent{
   addictName:string;
   formData: FormGroup= this.fb.group({
     PhysicalComplications:[''],
+    signature71:[''],
+    signature72:['']
   });
+
+  url71: any;
+  hideChoose71=false;
+  hideButton71=true;
+  url72: any;
+  hideChoose72=false;
+  hideButton72=true;
+
+
+  selectFile71(event: any) {
+    if (!event.target.files[0] || event.target.files[0].length == 0) {
+      return;
+    }
+  
+    const mimeType = event.target.files[0].type;
+    if (!mimeType.match(/image\/*/)) {
+      return;
+    }
+  
+    const reader = new FileReader();
+    reader.onload = (_event) => {
+      const formControls = this.formData.controls;
+      formControls['signature71'].setValue(reader.result)
+      this.url71 = reader.result;
+      this.hideChoose71 = true;
+      this.hideButton71 = false;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  selectFile72(event: any) {
+    if (!event.target.files[0] || event.target.files[0].length == 0) {
+      return;
+    }
+  
+    const mimeType = event.target.files[0].type;
+    if (!mimeType.match(/image\/*/)) {
+      return;
+    }
+  
+    const reader = new FileReader();
+    reader.onload = (_event) => {
+      const formControls = this.formData.controls;
+      formControls['signature72'].setValue(reader.result)
+      this.url72 = reader.result;
+      this.hideChoose72 = true;
+      this.hideButton72 = false;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+    removeImage71(){
+      this.url71 = null;
+      this.hideChoose71=false;
+      this.hideButton71=true;
+
+    }
+    removeImage72(){
+      this.url72 = null;
+      this.hideChoose72=false;
+      this.hideButton72=true;
+
+    }
 
   retrievedData: any;
   dataFetched: boolean = false;
@@ -44,7 +109,7 @@ export class SeventhComponent{
         (response) => {
           console.log('Form data saved successfully:', response);
           this.toastr.success('Form data saved successfully', 'Success');
-          this.formData.reset();
+          //this.formData.reset();
         },
         (error) => {
           console.error('Error saving form data:', error);
@@ -65,6 +130,22 @@ export class SeventhComponent{
           this.dataFetched = true;
           // Update form controls with retrieved data
           this.formData.patchValue(this.retrievedData);
+          if(this.formData.get('signature71')?.value != "")
+          {
+            this.formData.patchValue(this.retrievedData);
+            this.url71 = this.formData.get('signature71')?.value;
+            this.hideChoose71 = true;
+            this.hideButton71 = false;
+
+          }
+          if(this.formData.get('signature72')?.value != "")
+          {
+            this.formData.patchValue(this.retrievedData);
+            this.url72 = this.formData.get('signature72')?.value;
+            this.hideChoose72 = true;
+            this.hideButton72 = false;
+
+          }
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -74,11 +155,10 @@ export class SeventhComponent{
     }
   }
 
-  navigateToSixthPage() {
+  navigateToSeventhPage() {
     // Only navigate to the third page if data is fetched
     if (this.dataFetched) {
       this.router.navigate(['../sixth'], { relativeTo: this.route });
     }
   }
 }
-

@@ -169,10 +169,6 @@ import { SharedService } from '../shared.service';
 })
 export class FifthComponent{
   addictName:string;
-  displayedImages1: SafeUrl[] = [];
-  displayedImages2: SafeUrl[] = [];
-  displayedImages3: SafeUrl[] = [];
-  displayedImages4: SafeUrl[] = [];
   formData: FormGroup=this.fb.group({
     'SpecialNoteವಿಶೇಷಸೂಚನೆ': [''],
     'name': ['',Validators.required],
@@ -381,7 +377,7 @@ export class FifthComponent{
         (response) => {
           console.log('Form data saved successfully:', response);
           this.toastr.success('Form data saved successfully', 'Success');
-          this.formData.reset();
+          //this.formData.reset();
         },
         (error) => {
           console.error('Error saving form data:', error);
@@ -402,22 +398,54 @@ export class FifthComponent{
           console.log('Data retrieved successfully:', this.retrievedData);
           this.dataFetched = true;
           // Update form controls with retrieved data
-          this.formData.patchValue(this.retrievedData);
-          this.url5 = this.formData.get('sig5')?.value;
-          this.hideChoose5 = true;
-          this.hideButton5 = false;
-          this.url4 = this.formData.get('sig4')?.value;
+
+          
+
+          if( this.formData.get('sig5')?.value != "")
+          {
+            this.formData.patchValue(this.retrievedData);
+            this.url5 = this.formData.get('sig5')?.value;
+            this.hideChoose5 = true;
+            this.hideButton5 = false;
+
+          }
+
+          if( this.formData.get('sig4')?.value != "")
+          {
+            this.formData.patchValue(this.retrievedData);
+            this.url4 = this.formData.get('sig1')?.value;
           this.hideChoose4 = true;
           this.hideButton4 = false;
-          this.url3 = this.formData.get('sig3')?.value;
+
+          }
+
+          if( this.formData.get('sig3')?.value != "")
+          {
+            this.formData.patchValue(this.retrievedData);
+            this.url3 = this.formData.get('sig3')?.value;
           this.hideChoose3 = true;
           this.hideButton3 = false;
-          this.url2 = this.formData.get('sig2')?.value;
-          this.hideChoose2 = true;
-          this.hideButton2 = false;
-          this.url1 = this.formData.get('sig1')?.value;
-          this.hideChoose1 = true;
-          this.hideButton1 = false;
+
+          }
+
+          if( this.formData.get('sig2')?.value != "")
+          {
+            this.formData.patchValue(this.retrievedData);
+            this.url2 = this.formData.get('sig2')?.value;
+            this.hideChoose2 = true;
+            this.hideButton2 = false;
+          }
+          
+          if( this.formData.get('sig1')?.value != "")
+          {
+            this.formData.patchValue(this.retrievedData);
+            this.url1 = this.formData.get('sig1')?.value;
+            this.hideChoose1 = true;
+            this.hideButton1 = false;
+
+          }
+         
+         
          
         },
         (error) => {

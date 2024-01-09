@@ -1,5 +1,3 @@
-
-
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -22,7 +20,10 @@ export class ThirdComponent {
     ಪಾಲ್ಗೊಳ್ಳಲುದಿನಾಂಕ: [''],
     ಚಿಕಿತ್ಸಾರ್ಥಿಯಹೆಸರು1: [''],
     ದಾಖಲುಪಡಿಸಿದವರಹೆಸರು: [''],
-    ಮೊಬೈಲ: [null, Validators.pattern('^[0-9]*$')]
+    ಮೊಬೈಲ: [null, Validators.pattern('^[0-9]*$')],
+    signature31:[''],
+    signature32:['']
+
   });
 
 
@@ -57,7 +58,7 @@ export class ThirdComponent {
         (response) => {
           console.log('Form data saved successfully:', response);
           this.toastr.success('Form data saved successfully', 'Success');
-          this.formData.reset();
+          //this.formData.reset();
         },
         (error) => {
           console.error('Error saving form data:', error);
@@ -78,6 +79,22 @@ export class ThirdComponent {
           this.dataFetched = true;
           // Update form controls with retrieved data
           this.formData.patchValue(this.retrievedData);
+          if(this.formData.get('signature31')?.value != "")
+          {
+            this.formData.patchValue(this.retrievedData);
+            this.url1 = this.formData.get('signature31')?.value;
+            this.hideChoose1 = true;
+            this.hideButton1 = false;
+
+          }
+          if(this.formData.get('signature32')?.value != "")
+          {
+            this.formData.patchValue(this.retrievedData);
+            this.url2 = this.formData.get('signature32')?.value;
+            this.hideChoose2 = true;
+            this.hideButton2 = false;
+
+          }
         },
         (error) => {
           console.error('Error fetching data:', error);
@@ -94,13 +111,16 @@ export class ThirdComponent {
     }
   }
 
-  url:any;
-  hideChoose=false;
-  hideButton=true;
+  url1: any;
+  hideChoose1=false;
+  hideButton1=true;
+  url2: any;
+  hideChoose2=false;
+  hideButton2=true;
 
 
 
-  selectFile(event: any) {
+  selectFile1(event: any) {
     if (!event.target.files[0] || event.target.files[0].length == 0) {
       return;
     }
@@ -112,23 +132,52 @@ export class ThirdComponent {
   
     const reader = new FileReader();
     reader.onload = (_event) => {
-      this.url = reader.result;
-      this.hideChoose = true;
-      this.hideButton = false;
+      const formControls = this.formData.controls;
+      formControls['signature31'].setValue(reader.result)
+      this.url1 = reader.result;
+      this.hideChoose1 = true;
+      this.hideButton1 = false;
     };
     reader.readAsDataURL(event.target.files[0]);
   }
 
-    removeImage(){
-      this.url = null;
-      this.hideChoose=false;
-      this.hideButton=true;
-
-      
-      
+  selectFile2(event: any) {
+    if (!event.target.files[0] || event.target.files[0].length == 0) {
+      return;
+    }
+  
+    const mimeType = event.target.files[0].type;
+    if (!mimeType.match(/image\/*/)) {
+      return;
+    }
+  
+    const reader = new FileReader();
+    reader.onload = (_event) => {
+      const formControls = this.formData.controls;
+      formControls['signature32'].setValue(reader.result)
+      this.url2 = reader.result;
+      this.hideChoose2 = true;
+      this.hideButton2 = false;
+    };
+    reader.readAsDataURL(event.target.files[0]);
   }
+
+    removeImage1(){
+      this.url1 = null;
+      this.hideChoose1=false;
+      this.hideButton1=true;
+
+    }
+    removeImage2(){
+      this.url2 = null;
+      this.hideChoose2=false;
+      this.hideButton2=true;
+
+    }
 
     
   
 }
+
+
 

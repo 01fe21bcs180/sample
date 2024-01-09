@@ -106,7 +106,7 @@ export class SixthComponent{
         (response) => {
           console.log('Form data saved successfully:', response);
           this.toastr.success('Form data saved successfully', 'Success');
-          this.formData.reset();
+          //this.formData.reset();
         },
         (error) => {
           console.error('Error saving form data:', error);

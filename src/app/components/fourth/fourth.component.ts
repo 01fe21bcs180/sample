@@ -1,14 +1,3 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-fourth',
-//   templateUrl: './fourth.component.html',
-//   styleUrl: './fourth.component.css'
-// })
-// export class FourthComponent {
-
-// }
-
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
@@ -66,7 +55,7 @@ retrievedData: any;
         (response) => {
           console.log('Form data saved successfully:', response);
           this.toastr.success('Form data saved successfully', 'Success');
-          this.formData.reset();
+          //this.formData.reset();
         },
         (error) => {
           console.error('Error saving form data:', error);
@@ -96,7 +85,7 @@ retrievedData: any;
     }
   }
 
-  navigateToThirdPage() {
+  navigateToFifthPage() {
     // Only navigate to the third page if data is fetched
     if (this.dataFetched) {
       this.router.navigate(['../fifth'], { relativeTo: this.route });
