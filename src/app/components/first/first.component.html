@@ -173,14 +173,19 @@
 
           <div class="form-row">
             <label for="occupation">Occupation</label>
-            <input type="text" name="occupation" id="occupation" class="form-input" formControlName="occupation">
+            <select name="occupation" id="occupation" class="form-input" formControlName="occupation">
+              <option value="doctor">Doctor</option>
+              <option value="engineer">Engineer</option>
+              <option value="teacher">Teacher</option>
+              <option value="other">other</option>
+            </select>
           </div>
         </div>
 
         <div class="form-fields">
           <div class="form-row">
             <label for="age">Age</label>
-            <input type="number" name="age" id="age" class="form-input" formControlName="age">
+            <input type="number" name="age" id="age" class="form-input" formControlName="age" min=18 max=100>
           </div>
 
           <div class="form-row">
